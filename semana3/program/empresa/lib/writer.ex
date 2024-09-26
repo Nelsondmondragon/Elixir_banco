@@ -43,20 +43,35 @@ defmodule Writer do
     json_data = Jason.encode!(updated_employees, pretty: true)
     File.write(filename, json_data)
   end
-
+  # Funcionalidad 1
   @spec modify_phone_employee(integer(), String.t(), String.t()) :: :ok | {:error, term()}
-  def write_employee(id, phone, filename \\ "employees.json") do
+  def modify_phone_employee(id, phone, filename \\ "employees.json") do
     employees = read_employees(filename)
 
-    case employees[id] do
+    case Enum.find(employees, &(&1.id == id)) do
       nil ->
         {:error, "El empleado con el id ingresado no existe"}
 
-      _employee ->
-        updated_employees = Map.put_in(employees[id].phone, phone)
+      employee ->
+        updated_employee = put_in(employee.phone, phone)
+
+        updated_employees =
+          Enum.map(employees, fn em ->
+            if em.id == id, do: updated_employee, else: em
+          end)
+
         json_data = Jason.encode!(updated_employees, pretty: true)
         File.write(filename, json_data)
     end
+
+    # case employees[id] do
+    #   nil ->
+    #     {:error, "El empleado con el id ingresado no existe"}
+
+    #   _employee ->
+    #     updated_employees = put_in(employees[id].phone, phone)
+
+    # end
   end
 
   @doc """

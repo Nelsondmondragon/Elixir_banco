@@ -1,5 +1,14 @@
 [
   {
+    "id": 3,
+    "name": "Juan Pérez",
+    "position": "Ingeniero de Software",
+    "email": "juan.perez@example.com",
+    "phone": "8887777777",
+    "hire_date": null,
+    "salary": null
+  },
+  {
     "id": 2,
     "name": "Camilo",
     "position": "Quintana",

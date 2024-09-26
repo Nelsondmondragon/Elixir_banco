@@ -83,7 +83,9 @@ defmodule Reader do
     end
   end
 
-   @doc """
+  # Funcionalidad 2
+
+  @doc """
   Leer los empleados por nombre del archivo JSON
 
   ## Parameters
